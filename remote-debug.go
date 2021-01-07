@@ -19,7 +19,7 @@ func main() {
 	log.Info("starting my cool app...")
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", UltimateHandler)
+	r.HandleFunc("/", ultimateHandler)
 	http.Handle("/", r)
 	srv := &http.Server{
 		Handler:      r,
@@ -32,9 +32,15 @@ func main() {
 	log.Fatal(srv.ListenAndServe())
 }
 
-func UltimateHandler(writer http.ResponseWriter, request *http.Request) {
+func ultimateHandler(writer http.ResponseWriter, request *http.Request) {
 	log.Debugf("request: %s %s %s", request.Method, request.Host, request.RequestURI)
-	log.Debug("computing the ultimate question...")
+	log.Infof("computing the ultimate question...")
+	answer := computeUltimateQuestion()
+	log.Infof("returning the ultimate answer: %s", answer)
 	writer.WriteHeader(http.StatusOK)
-	fmt.Fprint(writer, "OK")
+	fmt.Fprint(writer, answer)
+}
+
+func computeUltimateQuestion() string {
+	return "42"
 }
