@@ -1,6 +1,7 @@
-.idea
+.idea/
 *.iml
 *.swp
 
 go.sum
 remote-debug
+bin/

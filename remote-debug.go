@@ -16,7 +16,7 @@ func init() {
 }
 
 func main() {
-	log.Info("starting my cool app...")
+	log.Info("starting my cool app... 🤞")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", ultimateHandler)
@@ -28,19 +28,20 @@ func main() {
 		ReadTimeout:  15 * time.Second,
 	}
 
-	log.Info("my cool app has started.")
+	log.Info("my cool app has started. ✅")
 	log.Fatal(srv.ListenAndServe())
 }
 
 func ultimateHandler(writer http.ResponseWriter, request *http.Request) {
 	log.Debugf("request: %s %s %s", request.Method, request.Host, request.RequestURI)
-	log.Infof("computing the ultimate question...")
+	log.Infof("computing the ultimate question... ⚙")
 	answer := computeUltimateQuestion()
-	log.Infof("returning the ultimate answer: %s", answer)
+	log.Infof("returning the ultimate answer: %s 🏁", answer)
 	writer.WriteHeader(http.StatusOK)
-	fmt.Fprint(writer, answer)
+	fmt.Fprint(writer, len(answer))
 }
 
 func computeUltimateQuestion() string {
+	log.Debug("really tough computation... 😣")
 	return "42"
 }
